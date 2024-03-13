@@ -102,6 +102,55 @@ body{
 }
 
 
+.task input[tyoe="checkbox"]:checked{
+    background-color: #5a95ff;
+    border-color: #5a95ff;
+}
+
+.task input[tyoe="checkbox"]:checked:before{
+    position: absolute;
+    content: "\f00c";
+    color: #ffffff;
+    font-size: 0.8em;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.task span{
+    font: 0.9em;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.task button{
+    color: #ffffff;
+    width: 100px;
+    padding: 1em 0;
+    background-repeat: 0.5em;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.edit{
+    background-color: #5a95ff;
+}
+
+.delete{
+    background-color: red;
+}
+
+#pending-tasks span{
+    color: #5a95ff;
+}
+
+.completed{
+    text-decoration: line-through;
+    color: #a0a0a0;
+}
+
+
+
 #error{
     text-align: center;
     border-color: #ffffff;
