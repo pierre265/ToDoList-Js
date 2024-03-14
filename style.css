@@ -19,6 +19,9 @@ body{
     top: 1.875em;  
 }
 
+#pending-tasks span.change{
+    color: #111111;
+}
 .container{
     padding: 2em 2.5em;
     background-color: #f1f8fb;
