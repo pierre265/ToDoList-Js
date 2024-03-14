@@ -2,7 +2,7 @@ const addBtn = document.querySelector("#add-btn");
 const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const error = document.getElementById("error");
-const countValue = document.querySelector("count-value");
+const countValue = document.querySelector(".count-value");
 
 
 let taskCount = 0;
@@ -62,7 +62,7 @@ const addTask = () =>{
 
     const tasksCheck = document.querySelectorAll(".task-check");
     tasksCheck.forEach((checkBox) => {
-        checkBox.onChange = () =>{
+        checkBox.onchange = () =>{
             checkBox.nextElementSibling.classList.toggle("completed");
             if (checkBox.checked) {
                 taskCount -= 1;
