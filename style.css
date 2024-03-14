@@ -63,7 +63,7 @@ body{
 #tasks{
     margin-top:  1em;
     border-radius: 0.5em;
-    width: 100px;
+    width: 100%;
     position: relative;
     padding: 1em 0.5em;
 }
@@ -148,7 +148,6 @@ body{
     text-decoration: line-through;
     color: #a0a0a0;
 }
-
 
 
 #error{
