@@ -3,6 +3,7 @@ const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const error = document.getElementById("error");
 const countValue = document.querySelector(".count-value");
+const letterChange = document.querySelector(".change")
 
 
 let taskCount = 0;
@@ -10,6 +11,8 @@ let taskCount = 0;
 const displayCount = (taskCount) => {
     countValue.innerText = taskCount;
 };
+
+
 
 const addTask = () =>{
     const taskName = newTaskInput.value.trim();
@@ -23,6 +26,11 @@ const addTask = () =>{
         return;
     }
 
+    // const show = () => {
+    //     if(taskCount === 0 || 1){
+            
+    //     }
+    // }
     const task = `<div class="task">
         <input type="checkbox" class="task-check">
         <span class="taskname">${taskName}</span>
