@@ -45,9 +45,9 @@ const addTask = () =>{
         };
     });
 
-    const editButtons = document.querySelectorAll('.edit');
+    const editButtons = document.querySelectorAll(".edit");
     editButtons.forEach((editBtn) => {
-        editButtons.onclick = (e) =>{
+        editBtn.onclick = (e) =>{
             let targetElement = e.target;
             if (!(e.target.className == "edit")) {
                 targetElement = e.target.parentElement;
@@ -60,18 +60,22 @@ const addTask = () =>{
     });
     
 
-    const taskCheck = document.querySelectorAll('.task-check');
-    taskCheck.forEach((checkBox) => {
+    const tasksCheck = document.querySelectorAll(".task-check");
+    tasksCheck.forEach((checkBox) => {
         checkBox.onChange = () =>{
             checkBox.nextElementSibling.classList.toggle("completed");
             if (checkBox.checked) {
                 taskCount -= 1;
-            }else taskCount += 1;
+            }else {
+                taskCount += 1;
+            }
             displayCount(taskCount);
         };
     });
+
     taskCount += 1;
     displayCount(taskCount);
+    newTaskInput.value = "";
 };
 
 addBtn.addEventListener("click", addTask);
