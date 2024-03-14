@@ -1,6 +1,6 @@
 const addBtn = document.querySelector("#add-btn");
 const newTaskInput = document.querySelector("#wrapper input");
-const TaskContainer = document.querySelector("#tasks");
+const tasksContainer = document.querySelector("#tasks");
 const error = document.getElementById("error");
 const countValue = document.querySelector("count-value");
 
@@ -12,7 +12,7 @@ const displayCount = (taskCount) => {
 };
 
 const addTask = () =>{
-    const taskName = newTaskInput.ariaValueMax.trim();
+    const taskName = newTaskInput.value.trim();
     error.style.display = "none";
     
     if(!taskName){
@@ -34,7 +34,7 @@ const addTask = () =>{
         </button>
         </div>`;
 
-    TaskContainer.insertAdjacentHTML('beforeend', task);
+    tasksContainer.insertAdjacentHTML('beforeend', task);
 
     const deleteButtons = document.querySelectorAll(".delete");
     deleteButtons.forEach(button => {
