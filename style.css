@@ -69,7 +69,7 @@ body{
 }
 
 .task{
-    background: #ffffff;
+    background-color: #ffffff;
     padding: 0.8em 1em;
     display: grid;
     grid-template-columns: 1fr 8fr 2fr 2fr;
@@ -93,7 +93,7 @@ body{
     border: 2px solid #e1e1e1;
 }
 
-.task input[tyoe="checkbox"]:before{
+.task input[type="checkbox"]:before{
     content: "";
     position: absolute;
     transform: translate(-50%, -50%);
@@ -102,7 +102,7 @@ body{
 }
 
 
-.task input[tyoe="checkbox"]:checked{
+.task input[type="checkbox"]:checked{
     background-color: #5a95ff;
     border-color: #5a95ff;
 }
