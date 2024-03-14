@@ -10,8 +10,18 @@ let taskCount = 0;
 
 const displayCount = (taskCount) => {
     countValue.innerText = taskCount;
+    //vérifions si taskCount est supérieur à 1 pour afficher le "s"
+    if(taskCount > 1) {
+        letterChange.style.visibility = 'visible';
+    } else {
+        // Si taskCount n'est pas supérieur à 1, nous le rendons invisible
+        letterChange.style.visibility = 'hidden';
+    }
 };
 
+
+
+console.log(letterChange);
 
 
 const addTask = () =>{
@@ -26,11 +36,7 @@ const addTask = () =>{
         return;
     }
 
-    // const show = () => {
-    //     if(taskCount === 0 || 1){
-            
-    //     }
-    // }
+  
     const task = `<div class="task">
         <input type="checkbox" class="task-check">
         <span class="taskname">${taskName}</span>
@@ -88,6 +94,7 @@ const addTask = () =>{
 
 addBtn.addEventListener("click", addTask);
 
+//La logique s'applique dès le chargement de la page
 window.onload = () =>{
     taskCount = 0;
     displayCount(taskCount);
