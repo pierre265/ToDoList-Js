@@ -1,22 +1,3 @@
-
-
-
-
-
-/* Responsive pour moyens écrans */
-@media (min-width: 601px) and (max-width: 900px) {
-    .container {
-        padding: 1.5em; /* Un peu plus de padding que pour les téléphones */
-    }
-    #wrapper {
-        grid-template-columns: 2fr 1fr; /* Proportion différente pour la répartition */
-    }
-    .task {
-        grid-template-columns: 1fr 7fr 2fr 2fr; /* Ajustement pour le contenu des tâches */
-    }
-}
-
-
 *{
     padding: 0;
     margin: 0;
@@ -199,5 +180,18 @@ body{
     .task button {
         width: auto; /* S'assure que les boutons ne sont pas trop larges sur petits écrans */
         padding: 0.5em;
+    }
+}
+
+/* Responsive pour moyens écrans */
+@media (min-width: 601px) and (max-width: 900px) {
+    .container {
+        padding: 1.5em; /* Un peu plus de padding que pour les téléphones */
+    }
+    #wrapper {
+        grid-template-columns: 2fr 1fr; /* Proportion différente pour la répartition */
+    }
+    .task {
+        grid-template-columns: 1fr 7fr 2fr 2fr; /* Ajustement pour le contenu des tâches */
     }
 }
