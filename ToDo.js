@@ -3,106 +3,88 @@ const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const error = document.getElementById("error");
 const countValue = document.querySelector(".count-value");
-const letterChange = document.querySelector(".change")
 
 
 let taskCount = 0;
+let isEditing = false;
+let currentEditTask = null;
 
 const displayCount = (taskCount) => {
-    countValue.innerText = taskCount;
-    //vérifions si taskCount est supérieur à 1 pour afficher le "s"
-    if(taskCount > 1) {
-        letterChange.style.visibility = 'visible';
-    } else {
-        // Si taskCount n'est pas supérieur à 1, nous le rendons invisible
-        letterChange.style.visibility = 'hidden';
-    }
+    // On modifie ici pour ajuster le mot "tâche" en fonction du nombre
+    countValue.innerText = taskCount + (taskCount > 1 ? " tasks" : " task");
 };
 
+const updateTaskCount = (delta) => {
+    taskCount = Math.max(0, taskCount + delta);
+    displayCount(taskCount);
+};
 
-
-console.log(letterChange);
-
-
-const addTask = () =>{
+const addOrEditTask = () => {
     const taskName = newTaskInput.value.trim();
     error.style.display = "none";
     
-    if(!taskName){
-        setTimeout(()=>{
-            error.style.display ="block" ;
-        },200);
-        
+    if (!taskName) {
+        setTimeout(() => {
+            error.style.display = "block";
+        }, 200);
         return;
     }
 
-  
-    const task = `<div class="task">
-        <input type="checkbox" class="task-check">
-        <span class="taskname">${taskName}</span>
-        <button class="edit">
-        <i class="fa-solid fa-pen-to-square"></i>
-        </button>
-        <button class="delete">
-        <i class="fa-solid fa-trash"></i>
-        </button>
-        </div>`;
+    if (isEditing && currentEditTask) {
+        currentEditTask.querySelector(".taskname").innerText = taskName;
+        newTaskInput.value = "";
+        isEditing = false;
+        currentEditTask = null;
+    } else {
+        const task = `<div class="task">
+            <input type="checkbox" class="task-check">
+            <span class="taskname">${taskName}</span>
+            <button class="edit">
+            <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="delete">
+            <i class="fa-solid fa-trash"></i>
+            </button>
+            </div>`;
 
-    tasksContainer.insertAdjacentHTML('beforeend', task);
-
-    const deleteButtons = document.querySelectorAll(".delete");
-    deleteButtons.forEach(button => {
-        button.onclick = () =>{
-            button.parentNode.remove();
-            taskCount -= 1;
-            displayCount(taskCount);
-        };
-    });
-
-    const editButtons = document.querySelectorAll(".edit");
-    editButtons.forEach((editBtn) => {
-        editBtn.onclick = (e) =>{
-            let targetElement = e.target;
-            if (!(e.target.className == "edit")) {
-                targetElement = e.target.parentElement;
-            }
-            newTaskInput.value = targetElement.previousElementSibling?.innerText;
-            targetElement.parentNode.remove();
-            taskCount -= 1;
-            displayCount(taskCount);
-        };
-    });
-    
-
-    const tasksCheck = document.querySelectorAll(".task-check");
-    tasksCheck.forEach((checkBox) => {
-        checkBox.onchange = () =>{
-            checkBox.nextElementSibling.classList.toggle("completed");
-            if (checkBox.checked) {
-                taskCount -= 1;
-            }else {
-                taskCount += 1;
-            }
-            displayCount(taskCount);
-        };
-    });
-
-    taskCount += 1;
-    displayCount(taskCount);
+        tasksContainer.insertAdjacentHTML('beforeend', task);
+        const currentTask = tasksContainer.lastElementChild;
+        setupTaskActions(currentTask);
+        updateTaskCount(1);
+    }
     newTaskInput.value = "";
 };
 
-addBtn.addEventListener("click", addTask);
+const setupTaskActions = (taskElement) => {
+    const deleteButton = taskElement.querySelector(".delete");
+    const editButton = taskElement.querySelector(".edit");
+    const checkbox = taskElement.querySelector(".task-check"); // Sélection de la case à cocher
 
-//La logique s'applique dès le chargement de la page
-window.onload = () =>{
+    deleteButton.onclick = () => {
+        taskElement.remove();
+        updateTaskCount(-1);
+    };
+
+    editButton.onclick = () => {
+        newTaskInput.value = taskElement.querySelector(".taskname").innerText;
+        isEditing = true;
+        currentEditTask = taskElement;
+    };
+
+    checkbox.onchange = () => { // Écouteur d'événements pour la case à cocher
+        if (checkbox.checked) {
+            taskElement.classList.add("completed"); // Ajoute la classe si la tâche est cochée
+        } else {
+            taskElement.classList.remove("completed"); // Retire la classe si la tâche est décochée
+        }
+    };
+};
+
+
+addBtn.addEventListener("click", addOrEditTask);
+
+window.onload = () => {
     taskCount = 0;
     displayCount(taskCount);
     newTaskInput.value = "";
-}
-
-// // delete a task from the list
-// Tasks.prototype.delTask = function(e){
-//     if(e.target.classList.contains('delete')){  
-
-
+};
