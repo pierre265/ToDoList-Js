@@ -1,24 +1,22 @@
 
 /* Responsive pour petits écrans */
-@media (max-width: 600px) {
-    .container {
-        padding: 1em; /* Moins de padding pour économiser de l'espace */
-    }
+@media screen and (max-width: 600px) {
     #wrapper {
-        grid-template-columns: 1fr; /* Empile les éléments verticalement */
-        gap: 0.5em;
+        display: flex;
+        flex-direction: column-reverse; /* Change l'ordre : bouton en dessous, input au-dessus */
+        gap: 1em;
     }
-    #wrapper input, #wrapper button {
-        width: 100%; /* Ajuste la largeur pour les petits écrans */
-    }
+
     .task {
-        grid-template-columns: 1fr 6fr 1fr 1fr; /* Ajustement pour le contenu des tâches */
-        gap: 0.5em;
+        grid-template-columns: 1fr 2fr; /* Ajustez selon vos besoins pour les petits écrans */
     }
+
     .task button {
-        padding: 0.5em 0; /* Réduit le padding des boutons */
+        width: auto; /* S'assure que les boutons ne sont pas trop larges sur petits écrans */
+        padding: 0.5em;
     }
 }
+
 
 
 /* Responsive pour moyens écrans */
