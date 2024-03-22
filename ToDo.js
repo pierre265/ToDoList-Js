@@ -62,7 +62,9 @@ const setupTaskActions = (taskElement) => {
 
     deleteButton.onclick = () => {
         taskElement.remove();
-        updateTaskCount(-1);
+        if (!taskElement.classList.contains("completed")) {
+            updateTaskCount(-1); // On met à jour le compteur seulement si la tâche n'était pas marquée comme accomplie
+        }
     };
 
     editButton.onclick = () => {
@@ -74,11 +76,14 @@ const setupTaskActions = (taskElement) => {
     checkbox.onchange = () => { // Écouteur d'événements pour la case à cocher
         if (checkbox.checked) {
             taskElement.classList.add("completed"); // Ajoute la classe si la tâche est cochée
+            updateTaskCount(-1); // Décrémente le compteur car une tâche vient d'être accomplie
         } else {
             taskElement.classList.remove("completed"); // Retire la classe si la tâche est décochée
+            updateTaskCount(1); // Incrémente le compteur car la tâche est à nouveau active
         }
     };
 };
+
 
 
 addBtn.addEventListener("click", addOrEditTask);

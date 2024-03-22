@@ -1,3 +1,40 @@
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+    .container {
+        padding: 1em; /* Moins de padding pour économiser de l'espace */
+    }
+    #wrapper {
+        grid-template-columns: 1fr; /* Empile les éléments verticalement */
+        gap: 0.5em;
+    }
+    #wrapper input, #wrapper button {
+        width: 100%; /* Ajuste la largeur pour les petits écrans */
+    }
+    .task {
+        grid-template-columns: 1fr 6fr 1fr 1fr; /* Ajustement pour le contenu des tâches */
+        gap: 0.5em;
+    }
+    .task button {
+        padding: 0.5em 0; /* Réduit le padding des boutons */
+    }
+}
+
+
+/* Responsive pour moyens écrans */
+@media (min-width: 601px) and (max-width: 900px) {
+    .container {
+        padding: 1.5em; /* Un peu plus de padding que pour les téléphones */
+    }
+    #wrapper {
+        grid-template-columns: 2fr 1fr; /* Proportion différente pour la répartition */
+    }
+    .task {
+        grid-template-columns: 1fr 7fr 2fr 2fr; /* Ajustement pour le contenu des tâches */
+    }
+}
+
+
 *{
     padding: 0;
     margin: 0;
