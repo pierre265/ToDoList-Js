@@ -3,7 +3,6 @@
 
 
 
-
 /* Responsive pour moyens écrans */
 @media (min-width: 601px) and (max-width: 900px) {
     .container {
@@ -188,29 +187,17 @@ body{
 /* Responsive pour petits écrans */
 @media screen and (max-width: 600px) {
     #wrapper {
-        display: block; /* Fait passer le conteneur à un affichage en bloc */
+        display: flex;
+        flex-direction: column-reverse; /* Change l'ordre : bouton en dessous, input au-dessus */
+        gap: 1em;
     }
 
     .task {
-        display: flex; /* Utilise flexbox pour permettre une disposition flexible des éléments */
-        flex-direction: column; /* Empile les éléments verticalement */
-        gap: 0.5em; /* Ajoute un petit espace entre les éléments empilés */
-    }
-
-    .task > * {
-        width: 100%; /* S'assure que tous les enfants de .task prennent toute la largeur disponible */
+        grid-template-columns: 1fr 2fr; /* Ajustez selon vos besoins pour les petits écrans */
     }
 
     .task button {
-        order: 3; /* Place les boutons sous la description de la tâche */
-    }
-
-    .task input[type="checkbox"] {
-        order: 1; /* Assure que la case à cocher reste en haut */
-    }
-
-    .task span {
-        order: 2; /* Positionne la description de la tâche entre la case à cocher et les boutons */
-        word-break: break-word; /* Assure que le texte ne dépasse pas de son conteneur */
+        width: auto; /* S'assure que les boutons ne sont pas trop larges sur petits écrans */
+        padding: 0.5em;
     }
 }
